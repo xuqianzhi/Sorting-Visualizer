@@ -24,7 +24,7 @@ export function mergeSortAnimation(
         let temp;
         if (i === mid) {
             while (k < end) {
-                bar_change_animation.push([k, lst[j]]);
+                bar_change_animation.push([k, lst[j], j]);
                 result[k] = lst[j];
                 k += 1;
                 j += 1;
@@ -33,7 +33,7 @@ export function mergeSortAnimation(
         }
         if (j === end) {
             while (k < end) {
-                bar_change_animation.push([k, lst[i]]);
+                bar_change_animation.push([k, lst[i], i]);
                 result[k] = lst[i];
                 k += 1;
                 i += 1;
@@ -44,11 +44,11 @@ export function mergeSortAnimation(
         const rightElem = lst[j];
         temp = result[k];
         if (leftElem < rightElem) {
-            bar_change_animation.push([k, leftElem]);
+            bar_change_animation.push([k, leftElem, j]);
             result[k] = leftElem;
             i += 1;
         } else {
-            bar_change_animation.push([k, rightElem]);
+            bar_change_animation.push([k, rightElem, i]);
             result[k] = rightElem;
             j += 1;
         }

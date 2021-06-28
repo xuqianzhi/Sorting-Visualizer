@@ -8,32 +8,21 @@ export function insertionSortAnimation(
                             0th place is new index, 1st place is new height
     */
    for (let i = 1; i < lst.length; i++) {
-       const pivot = lst[i];
-       var j = i - 1;
-       while(j >= 0 && pivot < lst[j]) {
+       const inserting_elem = lst[i];
+       var j = i - 1; // j will be the inserting position
+       var temp_animations = [];
+       while(j >= 0 && inserting_elem < lst[j]) {
            lst[j + 1] = lst[j];
-           bar_change_animation.push([j + 1, lst[j]]);
+           temp_animations.push([j + 1, lst[j]]);
+           temp_animations.push([j, inserting_elem]);
            j -= 1;
        }
-       lst[j + 1] = pivot;
-       bar_change_animation.push([j + 1, lst[j + 1]]);
+       for (let k = 0; k < temp_animations.length; k++) {
+           var curr_animation = temp_animations[k];
+           curr_animation.push([j + 1]);
+           bar_change_animation.push(curr_animation);
+       }
+       lst[j + 1] = inserting_elem;
+       bar_change_animation.push([j + 1, lst[j + 1], j + 1]);
    }
 }
-
-
-// def insertionSort(arr):
- 
-//     # Traverse through 1 to len(arr)
-//     for i in range(1, len(arr)):
- 
-//         key = arr[i]
- 
-//         # Move elements of arr[0..i-1], that are
-//         # greater than key, to one position ahead
-//         # of their current position
-//         j = i-1
-//         while j >= 0 and key < arr[j] :
-//                 arr[j + 1] = arr[j]
-//                 j -= 1
-//         arr[j + 1] = key
- 
